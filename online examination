@@ -7,7 +7,7 @@ HashMap<String,Integer> data=new HashMap<String,Integer>();
   public void login() {
     data.put("laikya",3333);
     data.put("lally",2222);
-    System.out.println("<----WELCOME TO ONLINE EXAMINATION PORTAL---->");
+    System.out.println("****WELCOME TO ONLINE EXAMINATION PORTAL****");
     String userid;
     int pwd;
     System.out.println("Let's Start" );
@@ -123,7 +123,7 @@ public void exam() {
 }
 class Online {
 public static void main(String args[]) {
-  Examination student=new Examination();
+  OnlineExm student=new OnlineExm();
   student.login();
 }
 }
