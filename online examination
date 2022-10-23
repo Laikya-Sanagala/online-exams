@@ -1,0 +1,128 @@
+import java.io.*;
+import java.util.*;
+class Examination {
+Scanner input=new Scanner(System.in);
+HashMap<String,Integer> data=new HashMap<String,Integer>();
+  
+  public void login() {
+    data.put("imlie",6666);
+    data.put("Bia",1111);
+    System.out.println("<----WELCOME TO ONLINE EXAMINATION PORTAL---->");
+    String userid;
+    int pwd;
+    System.out.println(" Just login to continue");
+    System.out.println("Enter user-id");
+    userid=input.next();
+    System.out.println("Enter password");
+    pwd=input.nextInt();
+    if(data.containsKey(userid) && data.get(userid)==pwd) {
+      System.out.println("Login sucessfull");
+        option_menu();
+    }
+    else {
+      System.out.println("Invalid details");
+      System.out.println("Try again...");
+        login();
+    }
+  }
+  public void option_menu() {
+    int select;
+    System.out.println("Choose any option");
+    System.out.println("1.Update profile and password");
+    System.out.println("2.Start exam");
+    System.out.println("3.Logout");
+    select=input.nextInt();
+    switch(select) {
+    case 1:
+      data=update();
+      option_menu();
+      break;
+    case 2:
+      exam();
+      option_menu();
+      break;
+    case 3:
+      System.exit(0);
+      break;
+    default:
+      System.out.println("Invali");
+    }
+  }
+  public HashMap<String,Integer> update(){
+    String uuser;
+    int upwd;
+    System.out.println("Welcome to profile Update");
+    System.out.println("Enter user name");
+    uuser=input.next();
+    if(data.containsKey(uuser)) {
+    System.out.println("Enter new password ");
+    upwd = input.nextInt();
+    data.replace(uuser, upwd);
+    }
+    else {
+      System.out.println("Username doesn't exist");
+    }
+    return data;
+  }
+public void exam() {
+  long examtime=System.currentTimeMillis();
+  long endtime=examtime+40*1000;
+  int ans_count=0;
+  int ans,score;
+  System.out.println("Start the exam");
+  while(System.currentTimeMillis()<endtime) {
+    System.out.println("You have 40 seconds to answer 5 questions");
+    System.out.println("Each question carries 15 marks and"+" "+"-10 for every wrong answer");
+    System.out.println("*** Q1. 10+2= ?");
+    System.out.println("1)12"+"\t"+"2)20"+"\t"+"3)6"+"\t"+"4)15");
+    System.out.println("Choose correct option");
+    ans=input.nextInt();
+    System.out.println("Answer Locked...");
+    if(ans==1) {
+      ans_count++;
+    }
+    System.out.println("*** Q2. 20*2 = ?");
+    System.out.println("1)18"+"\t"+"2)22"+"\t"+"3)16"+"\t"+"4)40");
+    System.out.println("Choose correct option");
+    ans=input.nextInt();
+    System.out.println("Answer Locked...");
+    if(ans==4) {
+      ans_count++;
+    }
+    System.out.println("*** Q3. 44-33 = ?");
+    System.out.println("1)77"+"\t"+"2)11"+"\t"+"3)56"+"\t"+"4)75");
+    System.out.println("Choose correct option");
+    ans=input.nextInt();
+    System.out.println("Answer Locked...");
+    if(ans==2) {
+      ans_count++;
+    }
+    System.out.println("*** Q4.8+4= ?");
+    System.out.println("1)12"+"\t"+"2)1.2"+"\t"+"3)11"+"\t"+"4)12.0");
+    System.out.println("Choose correct option");
+    ans=input.nextInt();
+    System.out.println("Answer Locked...");
+    if(ans==1) {
+      ans_count++;
+    }
+    System.out.println("*** Q5. 5-0 = ?");
+    System.out.println("1)6"+"\t"+"2)5"+"\t"+"3)0"+"\t"+"4)4");
+    System.out.println("Choose correct option");
+    ans=input.nextInt();
+    System.out.println("Answer Locked...");
+    if(ans==2) {
+      ans_count++;
+    }
+    break;
+  }
+  System.out.println("You have completed the exam successfully");
+  score=ans_count*15-((5-ans_count)*5);
+  System.out.println("Total marks scored is "+" "+score);  
+}
+}
+class Online {
+public static void main(String args[]) {
+  Examination student=new Examination();
+  student.login();
+}
+}
